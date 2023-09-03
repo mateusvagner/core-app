@@ -5,11 +5,12 @@ import java.util.Date
 data class Student(
     var id: String,
     var name: String,
-    var birthDate: String,
-    var enrollmentDate: Date?,
-    var paymentDueDate: Date?,
+    var surname: String,
+    var birthDate: Date,
+    var enrollmentDate: Date,
+    var paymentDueDate: Date,
     var modality: String,
     var plan: Plan,
-    var status: String,
+    var status: StudentStatus,
     var paymentStatus: PaymentStatus
 )
