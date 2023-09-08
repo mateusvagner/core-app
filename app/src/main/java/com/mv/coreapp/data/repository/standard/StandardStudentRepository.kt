@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class StandardStudentRepository @Inject constructor(
     private val studentRemoteDataSource: StudentRemoteDataSource
-): StudentRepository {
+) : StudentRepository {
 
     override suspend fun saveStudent(student: Student): Boolean {
         TODO("Not yet implemented")
