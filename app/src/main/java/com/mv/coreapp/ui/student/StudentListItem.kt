@@ -41,7 +41,6 @@ fun StudentListItem(
     student: Student,
     onClick: (Student) -> Unit
 ) {
-
     ElevatedCard(
         modifier = modifier,
         shape = RoundedCornerShape(4.dp),
@@ -78,6 +77,7 @@ fun StudentListItem(
                 Text(text = "Nascimento: ${student.birthDate}", fontSize = 14.sp)
                 Text(text = "Plano: ${student.plan}", fontSize = 14.sp)
             }
+
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
@@ -136,8 +136,8 @@ fun StudentListItemPreview() {
                 paymentDueDate = Date(),
                 modality = "Pilates",
                 plan = Plan.MONTHLY,
-                status = StudentStatus.ACTIVE,
-                paymentStatus = PaymentStatus.PENDING
+                status = StudentStatus.ON_HOLD,
+                paymentStatus = PaymentStatus.PAID
             ),
             onClick = {}
         )
