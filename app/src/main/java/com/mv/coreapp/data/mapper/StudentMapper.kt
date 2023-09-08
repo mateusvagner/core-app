@@ -1,10 +1,10 @@
 package com.mv.coreapp.data.mapper
 
-import com.mv.coreapp.data.dto.StudentDto
 import com.mv.coreapp.domain.model.PaymentStatus
 import com.mv.coreapp.domain.model.Plan
 import com.mv.coreapp.domain.model.Student
 import com.mv.coreapp.domain.model.StudentStatus
+import com.mv.coreapp.network.dto.StudentDto
 import com.mv.coreapp.util.DateParser
 
 object StudentMapper {
