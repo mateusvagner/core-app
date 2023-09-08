@@ -3,8 +3,8 @@ name: Build, Test and Run Lint on Pull Request
 on:
   pull_request:
 
-env:
-  FLAVOR: ${{ fromJSON('{"main":"prod","stage":"stage"}')[github.ref_name] || 'dev' }}
+#env:
+#  FLAVOR: ${{ fromJSON('{"main":"prod","stage":"stage"}')[github.ref_name] || 'dev' }}
 
 jobs:
   build:
@@ -19,7 +19,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build Application
-        run: ./gradlew build${{ env.FLAVOR }}Debug
+#        run: ./gradlew build${{ env.FLAVOR }}Debug
+        run: ./gradlew buildDebug
 
   test:
     runs-on: ubuntu-latest
@@ -33,7 +34,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Test Application
-        run: ./gradlew test${{ env.FLAVOR }}DebugUnitTest
+#        run: ./gradlew test${{ env.FLAVOR }}DebugUnitTest
+        run: ./gradlew testDebugUnitTest
 
   lint:
     runs-on: ubuntu-latest
