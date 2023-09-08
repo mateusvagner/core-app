@@ -8,7 +8,7 @@ import com.mv.coreapp.network.dto.StudentDto
 import com.mv.coreapp.util.DateParser
 
 object StudentMapper {
-    fun mapStudentDtoToStudent(dto: StudentDto): Student{
+    fun mapStudentDtoToStudent(dto: StudentDto): Student {
         return Student(
             id = dto.id,
             name = dto.name,

@@ -4,7 +4,7 @@ import com.mv.coreapp.data.datasource.StudentDataSource
 import com.mv.coreapp.network.dto.StudentDto
 import javax.inject.Inject
 
-class StudentRemoteDataSource @Inject constructor(): StudentDataSource {
+class StudentRemoteDataSource @Inject constructor() : StudentDataSource {
     override suspend fun saveStudent(student: StudentDto): Boolean {
         TODO("Not yet implemented")
     }

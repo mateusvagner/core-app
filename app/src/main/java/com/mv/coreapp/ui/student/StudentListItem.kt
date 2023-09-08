@@ -56,7 +56,6 @@ fun StudentListItem(
             Column(
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-
                 Text(
                     text = buildAnnotatedString {
                         append(student.name)
@@ -64,7 +63,7 @@ fun StudentListItem(
                             style = SpanStyle(
                                 color = MaterialTheme.colorScheme.secondary,
                                 fontSize = 14.sp
-                            ),
+                            )
                         ) {
                             append(" " + student.surname)
                         }
@@ -99,7 +98,6 @@ private fun StudentStatusIndicator(status: StudentStatus) {
             StudentStatus.ON_HOLD -> Color.Yellow
         }
     ) {
-
     }
 }
 
