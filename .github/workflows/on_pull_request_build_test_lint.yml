@@ -1,0 +1,52 @@
+name: Build, Test and Run Lint on Pull Request
+
+on:
+  pull_request:
+
+#env:
+#  FLAVOR: ${{ fromJSON('{"main":"prod","stage":"stage"}')[github.ref_name] || 'dev' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build Application
+#        run: ./gradlew build${{ env.FLAVOR }}Debug
+        run: ./gradlew buildDebug
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Test Application
+#        run: ./gradlew test${{ env.FLAVOR }}DebugUnitTest
+        run: ./gradlew testDebugUnitTest
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Run ktLintCheck on Application
+        run: ./gradlew ktLintCheck
