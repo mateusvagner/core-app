@@ -1,4 +1,4 @@
-package com.mv.coreapp.data.dto
+package com.mv.coreapp.network.dto
 
 data class StudentDto(
     var id: String,
