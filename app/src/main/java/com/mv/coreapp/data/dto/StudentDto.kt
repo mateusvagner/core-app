@@ -3,6 +3,7 @@ package com.mv.coreapp.data.dto
 data class StudentDto(
     var id: String,
     var name: String,
+    var surname: String,
     var birthDate: String,
     var enrollmentDate: String,
     var paymentDueDate: String,
