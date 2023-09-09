@@ -16,6 +16,9 @@ hilt-vertion = "2.48"
 
 gradle-ktlint-version = "11.5.1"
 
+google-service = "4.3.15"
+firebase-bom = "32.2.3"
+
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 
@@ -39,6 +42,10 @@ material3 = { group = "androidx.compose.material3", name = "material3" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-vertion" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-vertion" }
 
+google-service = { group = "com.google.gms", name = "google-services", version.ref = "google-service" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-realtime-database = { group = "com.google.firebase", name = "firebase-database-ktx" }
+
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
@@ -46,6 +53,8 @@ com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-v
 com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt-vertion" }
 
 org-jlleitschuh-gradle-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "gradle-ktlint-version" }
+
+com-google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "google-service" }
 
 [bundles]
 
