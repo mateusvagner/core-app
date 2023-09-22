@@ -23,7 +23,7 @@ import com.mv.coreapp.navigation.Route
 import com.mv.coreapp.navigation.RouteKeys
 import com.mv.coreapp.ui.student.studentdetail.StudentDetailScreen
 import com.mv.coreapp.ui.student.students.StudentsScreen
-import com.mv.coreapp.ui.student.students.StudentsScreenEvent
+import com.mv.coreapp.ui.student.students.StudentsScreenEventHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,15 +62,7 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
             StudentsScreen(
                 modifier = modifier,
                 onEvent = { event ->
-                    when (event) {
-                        is StudentsScreenEvent.StudentClicked -> {
-                            navController.navigate(
-                                Route.StudentDetail.fromStudentsToStudentDetail(
-                                    event.studentId
-                                )
-                            )
-                        }
-                    }
+                    StudentsScreenEventHandler.handleEvent(event, navController)
                 }
             )
         }
