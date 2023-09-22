@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.student
+package com.mv.coreapp.ui.student.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,7 +31,7 @@ import com.mv.coreapp.domain.model.PaymentStatus
 import com.mv.coreapp.domain.model.Plan
 import com.mv.coreapp.domain.model.Student
 import com.mv.coreapp.domain.model.StudentStatus
-import com.mv.coreapp.ui.theme.CoreAppTheme
+import com.mv.coreapp.designsystem.theme.CoreAppTheme
 import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
