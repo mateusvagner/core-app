@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 Scaffold(
-                    modifier = Modifier,
+                    modifier = Modifier
                 ) { contentPadding ->
                     AppScreen(
                         modifier = Modifier
@@ -89,7 +89,6 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
                     .makeText(LocalContext.current, "Student Id is null", Toast.LENGTH_SHORT)
                     .show()
             }
-
         }
     }
 }

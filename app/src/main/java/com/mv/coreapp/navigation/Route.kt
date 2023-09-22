@@ -2,7 +2,7 @@ package com.mv.coreapp.navigation
 
 import com.mv.coreapp.navigation.RouteKeys.STUDENT_DETAIL_PARAM
 
-object RouteKeys{
+object RouteKeys {
     const val STUDENT_DETAIL_PARAM = "studentDetailParam"
 }
 
