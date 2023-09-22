@@ -1,9 +1,9 @@
-package com.mv.coreapp.data.datasource
+package com.mv.coreapp.data.remotedatasource
 
-import com.mv.coreapp.data.dto.StudentDto
+import com.mv.coreapp.data.remotedatasource.dto.StudentDto
 import kotlinx.coroutines.flow.Flow
 
-interface StudentDataSource {
+interface RemoteStudentDataSource {
 
     suspend fun saveStudent(student: StudentDto)
 
