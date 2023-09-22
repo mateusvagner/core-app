@@ -27,11 +27,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mv.coreapp.designsystem.theme.CoreAppTheme
 import com.mv.coreapp.domain.model.PaymentStatus
 import com.mv.coreapp.domain.model.Plan
 import com.mv.coreapp.domain.model.Student
 import com.mv.coreapp.domain.model.StudentStatus
-import com.mv.coreapp.designsystem.theme.CoreAppTheme
 import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
