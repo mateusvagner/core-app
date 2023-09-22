@@ -1,6 +1,6 @@
 package com.mv.coreapp.data.datasource
 
-import com.mv.coreapp.network.dto.StudentDto
+import com.mv.coreapp.data.dto.StudentDto
 import kotlinx.coroutines.flow.Flow
 
 interface StudentDataSource {
