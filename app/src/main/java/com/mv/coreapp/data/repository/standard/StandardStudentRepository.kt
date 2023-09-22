@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class StandardStudentRepository @Inject constructor(
-    private val studentRemoteDataSource: StudentRemoteDataSource
+    private val studentDataSource: FirebaseStudentDataSource
 ) : StudentRepository {
 
     override suspend fun saveStudent(student: Student): Boolean {
