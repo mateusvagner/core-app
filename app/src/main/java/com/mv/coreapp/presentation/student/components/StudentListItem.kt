@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.student.components
+package com.mv.coreapp.presentation.student.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

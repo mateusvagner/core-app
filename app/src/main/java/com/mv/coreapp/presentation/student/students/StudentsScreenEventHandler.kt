@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.student.students
+package com.mv.coreapp.presentation.student.students
 
 import androidx.navigation.NavHostController
 import com.mv.coreapp.navigation.Route

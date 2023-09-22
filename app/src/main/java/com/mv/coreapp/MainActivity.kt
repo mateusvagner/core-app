@@ -21,9 +21,9 @@ import androidx.navigation.navArgument
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 import com.mv.coreapp.navigation.Route
 import com.mv.coreapp.navigation.RouteKeys
-import com.mv.coreapp.ui.student.studentdetail.StudentDetailScreen
-import com.mv.coreapp.ui.student.students.StudentsScreen
-import com.mv.coreapp.ui.student.students.StudentsScreenEventHandler
+import com.mv.coreapp.presentation.student.studentdetail.StudentDetailScreen
+import com.mv.coreapp.presentation.student.students.StudentsScreen
+import com.mv.coreapp.presentation.student.students.StudentsScreenEventHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

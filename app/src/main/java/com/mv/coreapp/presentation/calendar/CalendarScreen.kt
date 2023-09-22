@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.student.studentdetail
+package com.mv.coreapp.presentation.calendar
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -10,19 +10,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 
 @Composable
-fun StudentDetailScreen(modifier: Modifier = Modifier, studentId: String) {
+fun CalendarScreen() {
     Surface(
-        modifier = modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.error
     ) {
-        Text(text = "Students id: $studentId")
+        Text(text = "Calendar Screen")
     }
 }
 
 @Composable
 @Preview
-fun StudentDetailScreenPreview() {
+fun MoreScreenPreview() {
     CoreAppTheme {
-        StudentDetailScreen(studentId = "123aaAAbbBBccCC")
+        CalendarScreen()
     }
 }

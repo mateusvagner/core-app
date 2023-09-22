@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.student.students
+package com.mv.coreapp.presentation.student.students
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
