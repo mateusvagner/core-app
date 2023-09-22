@@ -1,7 +1,7 @@
 package com.mv.coreapp.di
 
 import com.mv.coreapp.data.datasource.StudentDataSource
-import com.mv.coreapp.data.datasource.remote.StudentRemoteDataSource
+import com.mv.coreapp.data.datasource.remote.FirebaseStudentDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,5 +14,5 @@ interface DataSourceModule {
 
     @Singleton
     @Binds
-    fun bindStudentRemoteDataSource(impl: StudentRemoteDataSource): StudentDataSource
+    fun bindStudentDataSource(impl: FirebaseStudentDataSource): StudentDataSource
 }
