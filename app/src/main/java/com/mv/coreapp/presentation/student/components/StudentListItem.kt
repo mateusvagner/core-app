@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.student.components
+package com.mv.coreapp.presentation.student.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,6 +20,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -42,7 +43,7 @@ fun StudentListItem(
     onClick: (Student) -> Unit
 ) {
     ElevatedCard(
-        modifier = modifier,
+        modifier = modifier.clip(RoundedCornerShape(4.dp)),
         shape = RoundedCornerShape(4.dp),
         onClick = { onClick(student) }
     ) {
@@ -125,6 +126,7 @@ fun PaymentStatusIndicator(status: PaymentStatus) {
 fun StudentListItemPreview() {
     CoreAppTheme {
         StudentListItem(
+            modifier = Modifier.padding(8.dp),
             student = Student(
                 id = "",
                 name = "Mateus Vagner",

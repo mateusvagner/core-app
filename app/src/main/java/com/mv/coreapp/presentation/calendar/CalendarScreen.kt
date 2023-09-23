@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.student
+package com.mv.coreapp.presentation.calendar
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -10,19 +10,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 
 @Composable
-fun StudentsScreen() {
+fun CalendarScreen() {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = MaterialTheme.colorScheme.error
     ) {
-        Text(text = "Students Screen")
+        Text(text = "Calendar Screen")
     }
 }
 
 @Composable
 @Preview
-fun StudentsScreenPreview() {
+fun MoreScreenPreview() {
     CoreAppTheme {
-        StudentsScreen()
+        CalendarScreen()
     }
 }

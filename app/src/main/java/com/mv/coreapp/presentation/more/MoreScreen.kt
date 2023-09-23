@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.financial
+package com.mv.coreapp.presentation.more
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -10,12 +10,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 
 @Composable
-fun FinancialScreen() {
+fun MoreScreen() {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.primary
+        color = MaterialTheme.colorScheme.secondary
     ) {
-        Text(text = "Financial Screen")
+        Text(text = "More Screen")
     }
 }
 
@@ -23,6 +23,6 @@ fun FinancialScreen() {
 @Preview
 fun MoreScreenPreview() {
     CoreAppTheme {
-        FinancialScreen()
+        MoreScreen()
     }
 }

@@ -1,11 +1,11 @@
-package com.mv.coreapp.data.datasource.remote
+package com.mv.coreapp.data.remotedatasource.firebaseimpl
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.mv.coreapp.data.datasource.StudentDataSource
-import com.mv.coreapp.network.dto.StudentDto
+import com.mv.coreapp.data.remotedatasource.RemoteStudentDataSource
+import com.mv.coreapp.data.remotedatasource.dto.StudentDto
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -14,9 +14,9 @@ import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-class FirebaseStudentDataSource @Inject constructor(
+class FirebaseRemoteStudentDataSource @Inject constructor(
     firebaseDatabase: FirebaseDatabase
-) : StudentDataSource {
+) : RemoteStudentDataSource {
 
     private val studentDatabase = firebaseDatabase.reference.child("student")
 

@@ -1,4 +1,4 @@
-package com.mv.coreapp.ui.more
+package com.mv.coreapp.presentation.student.studentdetail
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -10,19 +10,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 
 @Composable
-fun MoreScreen() {
+fun StudentDetailScreen(modifier: Modifier = Modifier, studentId: String) {
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.secondary
+        modifier = modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
     ) {
-        Text(text = "More Screen")
+        Text(text = "Students id: $studentId")
     }
 }
 
 @Composable
 @Preview
-fun MoreScreenPreview() {
+fun StudentDetailScreenPreview() {
     CoreAppTheme {
-        MoreScreen()
+        StudentDetailScreen(studentId = "123aaAAbbBBccCC")
     }
 }
