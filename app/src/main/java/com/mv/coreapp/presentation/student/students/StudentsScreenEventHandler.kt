@@ -4,7 +4,11 @@ import androidx.navigation.NavHostController
 import com.mv.coreapp.navigation.Route
 
 object StudentsScreenEventHandler {
-    fun handleEvent(event: StudentsScreenEvent, navController: NavHostController) {
+    fun handleEvent(
+        event: StudentsScreenEvent,
+        navController: NavHostController,
+        viewModel: StudentsViewModel
+    ) {
         when (event) {
             is StudentsScreenEvent.StudentClicked -> {
                 navController.navigate(

@@ -78,6 +78,7 @@ fun StudentListItem(
                 Text(text = "Plano: ${student.plan}", fontSize = 14.sp)
             }
 
+            // TODO prevent to shrink
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
