@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -55,6 +56,7 @@ fun StudentListItem(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
+                modifier = Modifier.weight(0.90f),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
@@ -79,6 +81,8 @@ fun StudentListItem(
             }
 
             Column(
+                modifier = Modifier.weight(0.10f),
+                horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 StudentStatusIndicator(student.status)
