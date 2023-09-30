@@ -1,5 +1,5 @@
 [versions]
-agp = "8.1.1"
+agp = "8.1.2"
 kotlin-android = "1.9.0"
 core-ktx = "1.12.0"
 
@@ -10,11 +10,11 @@ espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.6.2"
 activity-compose = "1.7.2"
 navigation-compose-version = "2.7.3"
-compose-bom = "2023.09.01"
+compose-bom = "2023.09.02"
 
 ksp-version = "1.9.0-1.0.13"
 hilt-vertion = "2.48"
-hilt-navigation-compose-version = "1.0.0-alpha02"
+hilt-navigation-compose-version = "1.1.0-alpha01"
 
 gradle-ktlint-version = "11.5.1"
 
