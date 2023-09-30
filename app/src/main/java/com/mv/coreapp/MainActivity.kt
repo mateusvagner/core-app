@@ -12,9 +12,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -22,6 +19,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
@@ -35,7 +33,7 @@ import com.mv.coreapp.presentation.student.studentdetail.StudentDetailEvent
 import com.mv.coreapp.presentation.student.studentdetail.StudentDetailScreen
 import com.mv.coreapp.presentation.student.studentdetail.StudentDetailViewModel
 import com.mv.coreapp.presentation.student.students.StudentsScreen
-import com.mv.coreapp.presentation.student.students.StudentsScreenEventHandler
+import com.mv.coreapp.presentation.student.students.StudentsScreenEvent
 import com.mv.coreapp.presentation.student.students.StudentsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,20 +44,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoreAppTheme {
                 val navController = rememberNavController()
-                var selectedRoute by remember {
-                    mutableStateOf(
-                        navController.currentDestination?.route ?: Route.Students.route
-                    )
-                }
+
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route ?: Route.Students.route
 
                 Scaffold(
                     modifier = Modifier,
                     bottomBar = {
-                        CoreAppBottomNavigation(selectedScreen = selectedRoute) { route ->
-                            selectedRoute = route
+                        CoreAppBottomNavigation(selectedScreen = currentRoute) { route ->
                             navController.navigate(route) {
-                                popUpTo(navController.graph.startDestinationId)
+                                navController.graph.startDestinationRoute?.let { screenRoute ->
+                                    popUpTo(screenRoute) {
+                                        saveState = true
+                                    }
+                                }
                                 launchSingleTop = true
+                                restoreState = true
                             }
                         }
                     }
@@ -99,8 +99,13 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
                 modifier = modifier,
                 screenState = screenState,
                 onEvent = { event ->
-                    // TODO -> esse é o melhor jeito?
-                    StudentsScreenEventHandler.handleEvent(event, navController, viewModel)
+                    when (event) {
+                        is StudentsScreenEvent.StudentClicked -> {
+                            navController.navigate(
+                                Route.StudentDetail.fromStudentsToStudentDetail(event.studentId)
+                            )
+                        }
+                    }
                 }
             )
         }
