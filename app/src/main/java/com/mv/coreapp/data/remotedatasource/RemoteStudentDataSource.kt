@@ -7,6 +7,8 @@ interface RemoteStudentDataSource {
 
     suspend fun saveStudent(student: StudentDto)
 
+    suspend fun getStudentByIdAsFlow(studentId: String): Flow<StudentDto>
+
     suspend fun getAllStudents(): List<StudentDto>
 
     suspend fun getAllStudentsAsFlow(): Flow<List<StudentDto>>

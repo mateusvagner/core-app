@@ -24,6 +24,23 @@ class StandardStudentRepository @Inject constructor(
         }
     }
 
+    override suspend fun getStudentById(studentId: String): Flow<CoreResult<Student>> {
+        return try {
+            studentDataSource.getStudentByIdAsFlow(studentId)
+                .map { studentDto ->
+                    CoreResult.Success(StudentMapper.mapStudentDtoToStudent(studentDto))
+                }.catch { throwable ->
+                    val exception = Exception(throwable)
+                    CoreResult.Error(exception)
+                }
+        } catch (e: Exception) {
+            val exception = Exception(e)
+            return kotlinx.coroutines.flow.flow {
+                emit(CoreResult.Error(exception))
+            }
+        }
+    }
+
     override suspend fun getAllStudents(): Flow<CoreResult<List<Student>>> {
         return studentDataSource.getAllStudentsAsFlow()
             .map { studentsDto ->
