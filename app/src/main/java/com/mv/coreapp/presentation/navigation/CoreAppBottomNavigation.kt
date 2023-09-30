@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 
 @Composable
-fun CoreAppBottomNavigation(selectedScreen: String, onClick: (String) -> Unit) {
-    val items = listOf(
+fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
+    val navigationItems = listOf(
         BottomNavigationItem.Calendar,
         BottomNavigationItem.Students,
         BottomNavigationItem.Financial,
@@ -35,18 +35,18 @@ fun CoreAppBottomNavigation(selectedScreen: String, onClick: (String) -> Unit) {
             )
             .clip(RoundedCornerShape(16.dp))
     ) {
-        items.forEach { item ->
+        navigationItems.forEach { navigationItem ->
             NavigationBarItem(
                 icon = {
                     Image(
-                        painter = painterResource(id = item.icon),
-                        contentDescription = stringResource(id = item.title)
+                        painter = painterResource(id = navigationItem.icon),
+                        contentDescription = stringResource(id = navigationItem.title)
                     )
                 },
-                label = { Text(stringResource(item.title)) },
-                selected = item.screenRoute == selectedScreen,
+                label = { Text(stringResource(navigationItem.title)) },
+                selected = navigationItem.route == currentRoute,
                 onClick = {
-                    onClick(item.screenRoute)
+                    onClick(navigationItem.route)
                 }
             )
         }
@@ -58,7 +58,7 @@ fun CoreAppBottomNavigation(selectedScreen: String, onClick: (String) -> Unit) {
 fun CoreAppBottomNavigationPreview() {
     CoreAppTheme {
         CoreAppBottomNavigation(
-            selectedScreen = BottomNavigationItem.Students.screenRoute,
+            currentRoute = BottomNavigationItem.Students.route,
             onClick = {}
         )
     }

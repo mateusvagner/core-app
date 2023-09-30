@@ -51,7 +51,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier,
                     bottomBar = {
-                        CoreAppBottomNavigation(selectedScreen = currentRoute) { route ->
+                        // TODO hide bottom bar depending on the screen
+                        CoreAppBottomNavigation(currentRoute = currentRoute) { route ->
                             navController.navigate(route) {
                                 navController.graph.startDestinationRoute?.let { screenRoute ->
                                     popUpTo(screenRoute) {
