@@ -21,7 +21,7 @@ fun FinancialScreen() {
 
 @Composable
 @Preview
-fun MoreScreenPreview() {
+private fun MoreScreenPreview() {
     CoreAppTheme {
         FinancialScreen()
     }

@@ -13,7 +13,7 @@ import com.mv.coreapp.designsystem.theme.CoreAppTheme
 fun MoreScreen() {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.secondary
+        color = MaterialTheme.colorScheme.tertiaryContainer
     ) {
         Text(text = "More Screen")
     }
@@ -21,7 +21,7 @@ fun MoreScreen() {
 
 @Composable
 @Preview
-fun MoreScreenPreview() {
+private fun MoreScreenPreview() {
     CoreAppTheme {
         MoreScreen()
     }

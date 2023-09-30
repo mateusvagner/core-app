@@ -12,9 +12,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -25,6 +27,10 @@ import androidx.navigation.navArgument
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 import com.mv.coreapp.navigation.Route
 import com.mv.coreapp.navigation.RouteKeys
+import com.mv.coreapp.presentation.calendar.CalendarScreen
+import com.mv.coreapp.presentation.financial.FinancialScreen
+import com.mv.coreapp.presentation.more.MoreScreen
+import com.mv.coreapp.presentation.navigation.CoreAppBottomNavigation
 import com.mv.coreapp.presentation.student.studentdetail.StudentDetailEvent
 import com.mv.coreapp.presentation.student.studentdetail.StudentDetailScreen
 import com.mv.coreapp.presentation.student.studentdetail.StudentDetailViewModel
@@ -40,16 +46,30 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoreAppTheme {
                 val navController = rememberNavController()
+                var selectedRoute by remember {
+                    mutableStateOf(
+                        navController.currentDestination?.route ?: Route.Students.route
+                    )
+                }
 
                 Scaffold(
-                    modifier = Modifier
+                    modifier = Modifier,
+                    bottomBar = {
+                        CoreAppBottomNavigation(selectedScreen = selectedRoute) { route ->
+                            selectedRoute = route
+                            navController.navigate(route) {
+                                popUpTo(navController.graph.startDestinationId)
+                                launchSingleTop = true
+                            }
+                        }
+                    }
                 ) { contentPadding ->
                     AppScreen(
                         modifier = Modifier
                             .fillMaxSize()
                             .background(color = MaterialTheme.colorScheme.background)
-                            .padding(contentPadding)
-                            .padding(16.dp), navController = navController
+                            .padding(contentPadding),
+                        navController = navController
                     )
                 }
             }
@@ -63,6 +83,12 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
         navController = navController, startDestination = Route.Students.route
     ) {
         composable(
+            route = Route.Calendar.route
+        ) {
+            CalendarScreen()
+        }
+
+        composable(
             route = Route.Students.route
         ) {
             val viewModel: StudentsViewModel = hiltViewModel()
@@ -75,6 +101,18 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
                     // TODO -> esse é o melhor jeito?
                     StudentsScreenEventHandler.handleEvent(event, navController, viewModel)
                 })
+        }
+
+        composable(
+            route = Route.Financial.route
+        ) {
+            FinancialScreen()
+        }
+
+        composable(
+            route = Route.More.route
+        ) {
+            MoreScreen()
         }
 
         composable(

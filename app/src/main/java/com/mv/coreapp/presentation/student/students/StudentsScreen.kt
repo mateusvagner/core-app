@@ -57,19 +57,17 @@ fun StudentsScreen(
 
             is StudentsScreenState.Success -> {
                 StudentsScreenSuccess(
-                    modifier = modifier,
                     students = screenState.students,
                     onEvent = onEvent
                 )
             }
         }
     }
-
 }
 
 @Composable
 private fun StudentsScreenSuccess(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     students: List<Student>,
     onEvent: (StudentsScreenEvent) -> Unit
 ) {
@@ -94,7 +92,7 @@ private fun StudentsScreenSuccess(
 
 @Composable
 @Preview
-fun StudentsScreenPreview() {
+private fun StudentsScreenPreview() {
     CoreAppTheme {
         StudentsScreen(
             modifier = Modifier.padding(16.dp),

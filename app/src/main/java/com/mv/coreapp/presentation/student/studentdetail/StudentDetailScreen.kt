@@ -43,7 +43,7 @@ fun StudentDetailScreen(
 
 @Composable
 @Preview
-fun StudentDetailScreenPreview() {
+private fun StudentDetailScreenPreview() {
     CoreAppTheme {
         StudentDetailScreen(
             screenState = StudentDetailState.Success(
