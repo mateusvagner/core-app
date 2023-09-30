@@ -7,4 +7,3 @@ sealed class StudentDetailState {
     data class Error(val message: String) : StudentDetailState()
     data class Success(val student: Student) : StudentDetailState()
 }
-

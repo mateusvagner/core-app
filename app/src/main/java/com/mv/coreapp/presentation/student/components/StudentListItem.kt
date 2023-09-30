@@ -100,7 +100,7 @@ private fun StudentStatusIndicator(status: StudentStatus) {
         shape = CircleShape,
         color = when (status) {
             StudentStatus.ACTIVE -> Color.Green
-            StudentStatus.INACTIVE ->  MaterialTheme.colorScheme.error
+            StudentStatus.INACTIVE -> MaterialTheme.colorScheme.error
             StudentStatus.ON_HOLD -> Color.Yellow
         }
     ) {

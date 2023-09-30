@@ -80,7 +80,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
     NavHost(
-        navController = navController, startDestination = Route.Students.route
+        navController = navController,
+        startDestination = Route.Students.route
     ) {
         composable(
             route = Route.Calendar.route
@@ -100,7 +101,8 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
                 onEvent = { event ->
                     // TODO -> esse é o melhor jeito?
                     StudentsScreenEventHandler.handleEvent(event, navController, viewModel)
-                })
+                }
+            )
         }
 
         composable(
@@ -138,8 +140,8 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
                                 viewModel.loadStudent(studentId)
                             }
                         }
-                    })
-
+                    }
+                )
             } ?: run {
                 Toast.makeText(LocalContext.current, "Student Id is null", Toast.LENGTH_SHORT)
                     .show()

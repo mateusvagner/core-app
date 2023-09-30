@@ -34,8 +34,9 @@ class StudentsViewModel @Inject constructor(
             studentRepository.getAllStudents().collect { result ->
                 when (result) {
                     is CoreResult.Success -> handleSuccess(result)
-                    is CoreResult.Error -> _state.value =
-                        StudentsScreenState.Error(result.exception.message ?: "Ops!")
+                    is CoreResult.Error ->
+                        _state.value =
+                            StudentsScreenState.Error(result.exception.message ?: "Ops!")
                 }
             }
         }

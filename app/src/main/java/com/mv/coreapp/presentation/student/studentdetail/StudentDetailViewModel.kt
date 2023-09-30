@@ -27,10 +27,12 @@ class StudentDetailViewModel @Inject constructor(
         viewModelScope.launch(errorHandler) {
             studentRepository.getStudentById(studentId).collect { result ->
                 when (result) {
-                    is CoreResult.Success -> _state.value =
-                        StudentDetailState.Success(result.data)
-                    is CoreResult.Error -> _state.value =
-                        StudentDetailState.Error(result.exception.message ?: "Ops!")
+                    is CoreResult.Success ->
+                        _state.value =
+                            StudentDetailState.Success(result.data)
+                    is CoreResult.Error ->
+                        _state.value =
+                            StudentDetailState.Error(result.exception.message ?: "Ops!")
                 }
             }
         }
