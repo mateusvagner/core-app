@@ -1,4 +1,4 @@
-package com.mv.coreapp.presentation.navigation
+package com.mv.coreapp.navigation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -19,13 +19,6 @@ import com.mv.coreapp.designsystem.theme.CoreAppTheme
 
 @Composable
 fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
-    val navigationItems = listOf(
-        BottomNavigationItem.Calendar,
-        BottomNavigationItem.Students,
-        BottomNavigationItem.Financial,
-        BottomNavigationItem.More
-    )
-
     NavigationBar(
         modifier = Modifier
             .padding(horizontal = 8.dp).padding(bottom = 8.dp)
@@ -35,7 +28,7 @@ fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
             )
             .clip(RoundedCornerShape(16.dp))
     ) {
-        navigationItems.forEach { navigationItem ->
+        mainNavigationItems.forEach { navigationItem ->
             NavigationBarItem(
                 icon = {
                     Image(
@@ -44,9 +37,9 @@ fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
                     )
                 },
                 label = { Text(stringResource(navigationItem.title)) },
-                selected = navigationItem.route == currentRoute,
+                selected = navigationItem.route.value == currentRoute,
                 onClick = {
-                    onClick(navigationItem.route)
+                    onClick(navigationItem.route.value)
                 }
             )
         }
@@ -58,7 +51,7 @@ fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
 fun CoreAppBottomNavigationPreview() {
     CoreAppTheme {
         CoreAppBottomNavigation(
-            currentRoute = BottomNavigationItem.Students.route,
+            currentRoute = BottomNavigationItem.Students.route.value,
             onClick = {}
         )
     }

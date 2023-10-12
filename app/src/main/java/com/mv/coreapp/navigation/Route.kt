@@ -6,7 +6,7 @@ object RouteKeys {
     const val STUDENT_DETAIL_PARAM = "studentDetailParam"
 }
 
-sealed class Route(val route: String) {
+sealed class Route(val value: String) {
 
     data object Calendar : Route("Calendar")
     data object Students : Route("Students")

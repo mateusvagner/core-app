@@ -30,7 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
-import com.mv.coreapp.designsystem.theme.PrimaryVariation
+import com.mv.coreapp.designsystem.theme.primaryVariation
 import com.mv.coreapp.domain.model.PaymentStatus
 import com.mv.coreapp.domain.model.Plan
 import com.mv.coreapp.domain.model.Student
@@ -114,7 +114,7 @@ fun PaymentStatusIndicator(status: PaymentStatus) {
             modifier = Modifier.size(size = 24.dp),
             imageVector = Icons.Default.CheckCircle,
             contentDescription = status.name,
-            tint = PrimaryVariation
+            tint = primaryVariation
         )
 
         PaymentStatus.PENDING -> Icon(

@@ -1,7 +1,6 @@
 package com.mv.coreapp
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -10,31 +9,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import com.mv.coreapp.designsystem.components.AnimatedBottomNavigation
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
+import com.mv.coreapp.navigation.CoreAppBottomNavigation
 import com.mv.coreapp.navigation.Route
-import com.mv.coreapp.navigation.RouteKeys
-import com.mv.coreapp.presentation.calendar.CalendarScreen
-import com.mv.coreapp.presentation.financial.FinancialScreen
-import com.mv.coreapp.presentation.more.MoreScreen
-import com.mv.coreapp.presentation.navigation.CoreAppBottomNavigation
-import com.mv.coreapp.presentation.student.studentdetail.StudentDetailEvent
-import com.mv.coreapp.presentation.student.studentdetail.StudentDetailScreen
-import com.mv.coreapp.presentation.student.studentdetail.StudentDetailViewModel
-import com.mv.coreapp.presentation.student.students.StudentsScreen
-import com.mv.coreapp.presentation.student.students.StudentsScreenEvent
-import com.mv.coreapp.presentation.student.students.StudentsViewModel
+import com.mv.coreapp.navigation.mainNavigationItems
+import com.mv.coreapp.presentation.app.AppScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,23 +31,17 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry?.destination?.route ?: Route.Students.route
+                val currentRoute = navBackStackEntry?.destination?.route ?: Route.Students.value
+                val mainNavigationItems = mainNavigationItems.map { it.route.value }
 
                 Scaffold(
                     modifier = Modifier,
                     bottomBar = {
-                        // TODO hide bottom bar depending on the screen
-                        CoreAppBottomNavigation(currentRoute = currentRoute) { route ->
-                            navController.navigate(route) {
-                                navController.graph.startDestinationRoute?.let { screenRoute ->
-                                    popUpTo(screenRoute) {
-                                        saveState = true
-                                    }
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        }
+                        MainBottomNavigation(
+                            currentRoute = currentRoute,
+                            navController = navController,
+                            mainNavigationItems = mainNavigationItems
+                        )
                     }
                 ) { contentPadding ->
                     AppScreen(
@@ -76,81 +55,28 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
 
-@Composable
-fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
-    NavHost(
-        navController = navController,
-        startDestination = Route.Students.route
+    @Composable
+    private fun MainBottomNavigation(
+        currentRoute: String,
+        navController: NavHostController,
+        mainNavigationItems: List<String>
     ) {
-        composable(
-            route = Route.Calendar.route
-        ) {
-            CalendarScreen()
-        }
+        val isBottomNavigationVisible = mainNavigationItems.contains(currentRoute)
 
-        composable(
-            route = Route.Students.route
+        AnimatedBottomNavigation(
+            isVisible = isBottomNavigationVisible
         ) {
-            val viewModel: StudentsViewModel = hiltViewModel()
-            val screenState by viewModel.state.collectAsState()
-
-            StudentsScreen(
-                modifier = modifier,
-                screenState = screenState,
-                onEvent = { event ->
-                    when (event) {
-                        is StudentsScreenEvent.StudentClicked -> {
-                            navController.navigate(
-                                Route.StudentDetail.fromStudentsToStudentDetail(event.studentId)
-                            )
+            CoreAppBottomNavigation(currentRoute = currentRoute) { route ->
+                navController.navigate(route) {
+                    navController.graph.startDestinationRoute?.let { screenRoute ->
+                        popUpTo(screenRoute) {
+                            saveState = true
                         }
                     }
+                    launchSingleTop = true
+                    restoreState = true
                 }
-            )
-        }
-
-        composable(
-            route = Route.Financial.route
-        ) {
-            FinancialScreen()
-        }
-
-        composable(
-            route = Route.More.route
-        ) {
-            MoreScreen()
-        }
-
-        composable(
-            route = Route.StudentDetail.route,
-            arguments = listOf(
-                navArgument(RouteKeys.STUDENT_DETAIL_PARAM) {
-                    type = NavType.StringType
-                }
-            )
-        ) { backStackEntry ->
-            val studentId = backStackEntry.arguments?.getString(RouteKeys.STUDENT_DETAIL_PARAM)
-            studentId?.let {
-                val viewModel: StudentDetailViewModel = hiltViewModel()
-                val screenState by viewModel.state.collectAsState()
-
-                StudentDetailScreen(
-                    modifier = modifier,
-                    screenState = screenState,
-                    onEvent = { event ->
-                        // TODO -> esse é o melhor jeito?
-                        when (event) {
-                            is StudentDetailEvent.StudentLoad -> {
-                                viewModel.loadStudent(studentId)
-                            }
-                        }
-                    }
-                )
-            } ?: run {
-                Toast.makeText(LocalContext.current, "Student Id is null", Toast.LENGTH_SHORT)
-                    .show()
             }
         }
     }

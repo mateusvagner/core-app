@@ -27,7 +27,6 @@ fun StudentDetailScreen(
         when (screenState) {
             is StudentDetailState.Loading -> {
                 Text(text = "Loading")
-                onEvent(StudentDetailEvent.StudentLoad)
             }
 
             is StudentDetailState.Error -> {

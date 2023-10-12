@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,11 +36,6 @@ fun StudentsScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = {
-            onEvent(StudentsScreenEvent.StudentClicked(studentId = "id_1"))
-        }) {
-            Text(text = "Add Fake Student")
-        }
         when (screenState) {
             is StudentsScreenState.Loading -> {
                 Text(text = "Loading")
