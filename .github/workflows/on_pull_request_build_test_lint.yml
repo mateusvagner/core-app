@@ -22,7 +22,7 @@ jobs:
         run: |
           echo ${{ secrets.GOOGLE_SERVICE_JSON }} | base64 --decode > ./app/google-services.json
       - name: Build Application
-#        run: ./gradlew build${{ env.FLAVOR }}Debug
+        #        run: ./gradlew build${{ env.FLAVOR }}Debug
         run: ./gradlew buildDebug
 
   test:
@@ -40,7 +40,7 @@ jobs:
         run: |
           echo ${{ secrets.GOOGLE_SERVICE_JSON }} | base64 --decode > ./app/google-services.json
       - name: Test Application
-#        run: ./gradlew test${{ env.FLAVOR }}DebugUnitTest
+        #        run: ./gradlew test${{ env.FLAVOR }}DebugUnitTest
         run: ./gradlew testDebugUnitTest
 
   lint:
@@ -54,6 +54,9 @@ jobs:
           java-version: '17'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+      - name: Decode google-service.json
+        run: |
+          echo ${{ secrets.GOOGLE_SERVICE_JSON }} | base64 --decode > ./app/google-services.json
       - name: Run lintDebug on Application
         run: ./gradlew lintDebug
 
