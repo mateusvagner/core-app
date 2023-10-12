@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CoreApp</string>
+
+    <!--Bottom Nav Tabs-->
+    <string name="calendar">Calendar</string>
+    <string name="students">Students</string>
+    <string name="financial">Financial</string>
+    <string name="more">More</string>
 </resources>

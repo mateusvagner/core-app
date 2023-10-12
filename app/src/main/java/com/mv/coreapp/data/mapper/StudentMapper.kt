@@ -10,16 +10,16 @@ import com.mv.coreapp.util.DateParser
 object StudentMapper {
     fun mapStudentDtoToStudent(dto: StudentDto): Student {
         return Student(
-            id = dto.id,
-            name = dto.name,
-            surname = dto.surname,
-            birthDate = DateParser.parseDate(dto.birthDate)!!, // TODO Fallback for parse error
-            enrollmentDate = DateParser.parseDate(dto.enrollmentDate)!!, // TODO Fallback for parse error
-            paymentDueDate = DateParser.parseDate(dto.paymentDueDate)!!, // TODO Fallback for parse error
-            modality = dto.modality,
-            plan = Plan.valueOf(dto.plan),
-            status = StudentStatus.valueOf(dto.status),
-            paymentStatus = PaymentStatus.valueOf(dto.paymentStatus)
+            id = dto.id!!,
+            name = dto.name!!,
+            surname = dto.surname!!,
+            birthDate = DateParser.parseDate(dto.birthDate!!)!!, // TODO Fallback for parse error
+            enrollmentDate = DateParser.parseDate(dto.enrollmentDate!!)!!, // TODO Fallback for parse error
+            paymentDueDate = DateParser.parseDate(dto.paymentDueDate!!)!!, // TODO Fallback for parse error
+            modality = dto.modality!!,
+            plan = Plan.valueOf(dto.plan!!),
+            status = StudentStatus.valueOf(dto.status!!),
+            paymentStatus = PaymentStatus.valueOf(dto.paymentStatus!!)
         )
     }
 

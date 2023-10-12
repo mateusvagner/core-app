@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -29,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
+import com.mv.coreapp.designsystem.theme.primaryVariation
 import com.mv.coreapp.domain.model.PaymentStatus
 import com.mv.coreapp.domain.model.Plan
 import com.mv.coreapp.domain.model.Student
@@ -55,6 +57,7 @@ fun StudentListItem(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
+                modifier = Modifier.weight(0.90f),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
@@ -79,6 +82,8 @@ fun StudentListItem(
             }
 
             Column(
+                modifier = Modifier.weight(0.10f),
+                horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 StudentStatusIndicator(student.status)
@@ -95,7 +100,7 @@ private fun StudentStatusIndicator(status: StudentStatus) {
         shape = CircleShape,
         color = when (status) {
             StudentStatus.ACTIVE -> Color.Green
-            StudentStatus.INACTIVE -> Color.Red
+            StudentStatus.INACTIVE -> MaterialTheme.colorScheme.error
             StudentStatus.ON_HOLD -> Color.Yellow
         }
     ) {
@@ -109,14 +114,14 @@ fun PaymentStatusIndicator(status: PaymentStatus) {
             modifier = Modifier.size(size = 24.dp),
             imageVector = Icons.Default.CheckCircle,
             contentDescription = status.name,
-            tint = Color.Green
+            tint = primaryVariation
         )
 
         PaymentStatus.PENDING -> Icon(
             modifier = Modifier.size(size = 24.dp),
             imageVector = Icons.Default.Warning,
             contentDescription = status.name,
-            tint = Color.Red
+            tint = MaterialTheme.colorScheme.error
         )
     }
 }

@@ -21,7 +21,7 @@ fun CalendarScreen() {
 
 @Composable
 @Preview
-fun MoreScreenPreview() {
+private fun MoreScreenPreview() {
     CoreAppTheme {
         CalendarScreen()
     }
