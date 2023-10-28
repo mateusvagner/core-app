@@ -1,4 +1,4 @@
-package com.mv.coreapp.presentation.app.bottomNavigationBar
+package com.mv.coreapp.presentation.app.bottomnavigationbar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 import com.mv.coreapp.designsystem.theme.light_primarySurface
+import com.mv.coreapp.presentation.app.bottomnavigationbar.model.BottomNavigationItem
+import com.mv.coreapp.presentation.app.bottomnavigationbar.model.mainNavigationItems
 
 @Composable
 fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
