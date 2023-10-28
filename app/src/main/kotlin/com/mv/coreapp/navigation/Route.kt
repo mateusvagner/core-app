@@ -1,6 +1,6 @@
 package com.mv.coreapp.navigation
 
-import com.mv.coreapp.presentation.student.studentdetail.StudentDetailArgs
+import com.mv.coreapp.presentation.student.StudentFeatureRoute
 
 sealed class Route(val route: String, val startDestination: String) {
     data object CalendarFeature : Route(
@@ -27,14 +27,6 @@ sealed class Route(val route: String, val startDestination: String) {
 sealed class CalendarFeatureRoute(val route: String) {
 
     data object Calendar : CalendarFeatureRoute("Calendar")
-}
-
-sealed class StudentFeatureRoute(val route: String) {
-
-    data object Students : StudentFeatureRoute("Students")
-    data object StudentDetail : StudentFeatureRoute("StudentDetail/{${StudentDetailArgs.STUDENT_ID}}") {
-        fun fromStudentsToStudentDetail(studentId: String) = "StudentDetail/$studentId"
-    }
 }
 
 sealed class FinancialFeatureRoute(val route: String) {

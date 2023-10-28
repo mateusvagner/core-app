@@ -4,16 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.mv.coreapp.presentation.calendar.CalendarScreen
 import com.mv.coreapp.presentation.financial.FinancialScreen
 import com.mv.coreapp.presentation.more.MoreScreen
-import com.mv.coreapp.presentation.student.studentdetail.StudentDetailArgs
-import com.mv.coreapp.presentation.student.studentdetail.StudentDetailScreenStateful
+import com.mv.coreapp.presentation.student.StudentFeatureRoute
+import com.mv.coreapp.presentation.student.studentdetail.studentDetailScreen
 import com.mv.coreapp.presentation.student.students.StudentsScreenStateful
 
 @Composable
@@ -65,16 +63,7 @@ private fun NavGraphBuilder.studentFeature(
             )
         }
 
-        composable(
-            route = StudentFeatureRoute.StudentDetail.route,
-            arguments = listOf(
-                navArgument(StudentDetailArgs.STUDENT_ID) {
-                    type = NavType.StringType
-                }
-            )
-        ) {
-            StudentDetailScreenStateful(modifier = modifier)
-        }
+        studentDetailScreen(modifier = modifier)
     }
 }
 

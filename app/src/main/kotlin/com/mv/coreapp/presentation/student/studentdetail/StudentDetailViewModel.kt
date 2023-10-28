@@ -19,7 +19,7 @@ class StudentDetailViewModel @Inject constructor(
     private val studentRepository: StudentRepository
 ) : ViewModel() {
 
-    private val args = StudentDetailArgs(savedStateHandle)
+    private val args = StudentDetailScreenArgs(savedStateHandle)
     private val studentId = args.studentId
 
     private val _state = MutableStateFlow<StudentDetailState>(StudentDetailState.Loading)

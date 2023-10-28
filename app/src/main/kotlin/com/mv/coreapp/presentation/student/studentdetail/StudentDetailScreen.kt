@@ -1,64 +1,51 @@
 package com.mv.coreapp.presentation.student.studentdetail
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.mv.coreapp.designsystem.theme.CoreAppTheme
-import com.mv.coreapp.domain.model.PaymentStatus
-import com.mv.coreapp.domain.model.Plan
-import com.mv.coreapp.domain.model.Student
-import com.mv.coreapp.domain.model.StudentStatus
-import java.util.Date
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.SavedStateHandle
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
+import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.mv.coreapp.presentation.student.StudentFeatureRoute
 
-@Composable
-fun StudentDetailScreen(
+fun NavGraphBuilder.studentDetailScreen(
     modifier: Modifier = Modifier,
-    screenState: StudentDetailState,
-    onEvent: (StudentDetailEvent) -> Unit = {}
 ) {
-    Surface(
-        modifier = modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+    composable(
+        route = StudentFeatureRoute.StudentDetail.route,
+        arguments = listOf(
+            navArgument(StudentDetailScreenArgs.STUDENT_ID) {
+                type = NavType.StringType
+            }
+        )
     ) {
-        when (screenState) {
-            is StudentDetailState.Loading -> {
-                Text(text = "Loading")
-            }
+        val viewModel: StudentDetailViewModel = hiltViewModel()
+        val screenState by viewModel.state.collectAsState()
 
-            is StudentDetailState.Error -> {
-                Text(text = screenState.message)
-            }
-
-            is StudentDetailState.Success -> {
-                Text(text = "Students id: ${screenState.student.name}")
-            }
-        }
+        StudentDetailScreenContent(
+            modifier = modifier,
+            screenState = screenState,
+            onEvent = { }
+        )
     }
 }
 
-@Composable
-@Preview
-private fun StudentDetailScreenPreview() {
-    CoreAppTheme {
-        StudentDetailScreen(
-            screenState = StudentDetailState.Success(
-                Student(
-                    id = "id_1",
-                    name = "Mateus Vagner",
-                    surname = "Guedes de Almeida",
-                    birthDate = Date(),
-                    enrollmentDate = Date(),
-                    paymentDueDate = Date(),
-                    modality = "Pilates",
-                    plan = Plan.MONTHLY,
-                    status = StudentStatus.ON_HOLD,
-                    paymentStatus = PaymentStatus.PAID
-                )
-            )
-        )
+fun NavController.navigateToStudentDetail(studentId: String) {
+    navigate(StudentFeatureRoute.StudentDetail.fromStudentsToStudentDetail(studentId))
+}
+
+internal class StudentDetailScreenArgs(val studentId: String) {
+    constructor(
+        savedStateHandle: SavedStateHandle
+    ) : this(
+        studentId = checkNotNull(savedStateHandle[STUDENT_ID])
+    )
+
+    companion object {
+        const val STUDENT_ID = "studentId"
     }
 }

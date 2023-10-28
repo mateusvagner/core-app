@@ -23,7 +23,7 @@ import com.mv.coreapp.presentation.student.components.StudentListItem
 import java.util.Date
 
 @Composable
-fun StudentsScreen(
+fun StudentsScreenContent(
     modifier: Modifier = Modifier,
     screenState: StudentsScreenState,
     onEvent: (StudentsScreenEvent) -> Unit = {}
@@ -50,7 +50,7 @@ fun StudentsScreen(
             }
 
             is StudentsScreenState.Success -> {
-                StudentsScreenSuccess(
+                StudentsScreenContentSuccess(
                     students = screenState.students,
                     onEvent = onEvent
                 )
@@ -60,7 +60,7 @@ fun StudentsScreen(
 }
 
 @Composable
-private fun StudentsScreenSuccess(
+private fun StudentsScreenContentSuccess(
     modifier: Modifier = Modifier,
     students: List<Student>,
     onEvent: (StudentsScreenEvent) -> Unit
@@ -86,9 +86,9 @@ private fun StudentsScreenSuccess(
 
 @Composable
 @Preview
-private fun StudentsScreenPreview() {
+private fun StudentsScreenContentPreview() {
     CoreAppTheme {
-        StudentsScreen(
+        StudentsScreenContent(
             modifier = Modifier.padding(16.dp),
             screenState = StudentsScreenState.Success(
                 students = listOf(
