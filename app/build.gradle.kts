@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-    namespace = "com.mv.coreapp"
-    compileSdk = 34
+    namespace = AppConfig.namespace
+    compileSdk = AppConfig.compileSdkVersion
 
     defaultConfig {
-        applicationId = "com.mv.coreapp"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = AppConfig.applicationId
+        minSdk = AppConfig.minSdkVersion
+        targetSdk = AppConfig.targetSdkVersion
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -45,7 +45,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.2"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     packaging {
         resources {
@@ -57,7 +57,7 @@ android {
 dependencies {
 
     implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.runtime.compose)
 
     implementation(libs.activity.compose)
     implementation(libs.navigation.compose)
