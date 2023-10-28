@@ -1,4 +1,4 @@
-package com.mv.coreapp.navigation
+package com.mv.coreapp.presentation.app.bottomNavigationBar
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -21,9 +21,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
+import com.mv.coreapp.presentation.app.bottomnavigationbar.model.BottomNavigationItem
 
 @Composable
-fun CoreAppNavigationBarItem(
+fun CoreAppNavigationItem(
     modifier: Modifier = Modifier,
     item: BottomNavigationItem,
     selected: Boolean = false,
@@ -70,7 +71,7 @@ fun CoreAppNavigationBarItem(
 @Preview
 fun CoreAppNavigationBarItemSelectedPreview() {
     CoreAppTheme {
-        CoreAppNavigationBarItem(
+        CoreAppNavigationItem(
             modifier = Modifier.padding(8.dp),
             item = BottomNavigationItem.Calendar,
             selected = true,
@@ -83,7 +84,7 @@ fun CoreAppNavigationBarItemSelectedPreview() {
 @Preview
 fun CoreAppNavigationBarItemUnselectedPreview() {
     CoreAppTheme {
-        CoreAppNavigationBarItem(
+        CoreAppNavigationItem(
             modifier = Modifier.padding(8.dp),
             item = BottomNavigationItem.Calendar,
             selected = false,

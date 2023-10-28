@@ -1,4 +1,4 @@
-package com.mv.coreapp.navigation
+package com.mv.coreapp.presentation.app.bottomNavigationBar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -37,7 +37,7 @@ fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             mainNavigationItems.forEach { navigationItem ->
-                CoreAppNavigationBarItem(
+                CoreAppNavigationItem(
                     modifier = Modifier.padding(8.dp),
                     item = navigationItem,
                     selected = navigationItem.route.startDestination == currentRoute,
