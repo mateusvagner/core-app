@@ -1,7 +1,7 @@
 package com.mv.coreapp.di
 
 import com.mv.coreapp.data.repository.StudentRepository
-import com.mv.coreapp.data.repository.standard.StandardStudentRepository
+import com.mv.coreapp.data.repository.impl.StudentRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,5 +14,5 @@ interface RepositoryModule {
 
     @Singleton
     @Binds
-    fun bindStudentRepository(impl: StandardStudentRepository): StudentRepository
+    fun bindStudentRepository(impl: StudentRepositoryImpl): StudentRepository
 }

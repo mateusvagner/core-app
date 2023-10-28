@@ -1,8 +1,8 @@
-package com.mv.coreapp.data.repository.standard
+package com.mv.coreapp.data.repository.impl
 
 import com.mv.coreapp.data.CoreResult
 import com.mv.coreapp.data.mapper.StudentMapper
-import com.mv.coreapp.data.remotedatasource.firebaseimpl.FirebaseRemoteStudentDataSource
+import com.mv.coreapp.data.remotedatasource.RemoteStudentDataSource
 import com.mv.coreapp.data.repository.StudentRepository
 import com.mv.coreapp.domain.model.Student
 import kotlinx.coroutines.flow.Flow
@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class StandardStudentRepository @Inject constructor(
-    private val studentDataSource: FirebaseRemoteStudentDataSource
+class StudentRepositoryImpl @Inject constructor(
+    private val studentDataSource: RemoteStudentDataSource
 ) : StudentRepository {
 
     override suspend fun saveStudent(student: Student): Boolean {
