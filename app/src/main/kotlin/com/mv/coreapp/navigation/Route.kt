@@ -1,10 +1,6 @@
 package com.mv.coreapp.navigation
 
-import com.mv.coreapp.navigation.RouteKeys.STUDENT_DETAIL_PARAM
-
-object RouteKeys {
-    const val STUDENT_DETAIL_PARAM = "studentDetailParam"
-}
+import com.mv.coreapp.presentation.student.studentdetail.StudentDetailArgs
 
 sealed class Route(val route: String, val startDestination: String) {
     data object CalendarFeature : Route(
@@ -36,7 +32,7 @@ sealed class CalendarFeatureRoute(val route: String) {
 sealed class StudentsFeatureRoute(val route: String) {
 
     data object Students : StudentsFeatureRoute("Students")
-    data object StudentDetail : StudentsFeatureRoute("StudentDetail/{$STUDENT_DETAIL_PARAM}") {
+    data object StudentDetail : StudentsFeatureRoute("StudentDetail/{${StudentDetailArgs.STUDENT_ID}}") {
         fun fromStudentsToStudentDetail(studentId: String) = "studentDetail/$studentId"
     }
 }

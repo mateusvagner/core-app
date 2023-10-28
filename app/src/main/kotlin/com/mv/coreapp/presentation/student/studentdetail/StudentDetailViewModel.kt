@@ -1,5 +1,6 @@
 package com.mv.coreapp.presentation.student.studentdetail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mv.coreapp.data.CoreResult
@@ -14,8 +15,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StudentDetailViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val studentRepository: StudentRepository
 ) : ViewModel() {
+
+    private val args = StudentDetailArgs(savedStateHandle)
+    private val studentId = args.studentId
+
     private val _state = MutableStateFlow<StudentDetailState>(StudentDetailState.Loading)
     val state: StateFlow<StudentDetailState> = _state.asStateFlow()
 
@@ -23,7 +29,11 @@ class StudentDetailViewModel @Inject constructor(
         _state.value = StudentDetailState.Error(exception.message ?: "Ops!")
     }
 
-    fun loadStudent(studentId: String) {
+    init {
+        loadStudent(studentId)
+    }
+
+    private fun loadStudent(studentId: String) {
         viewModelScope.launch(errorHandler) {
             studentRepository.getStudentById(studentId).collect { result ->
                 when (result) {

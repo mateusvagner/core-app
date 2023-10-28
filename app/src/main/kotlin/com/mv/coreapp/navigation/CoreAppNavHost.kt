@@ -2,6 +2,7 @@ package com.mv.coreapp.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -11,6 +12,7 @@ import androidx.navigation.navigation
 import com.mv.coreapp.presentation.calendar.CalendarScreen
 import com.mv.coreapp.presentation.financial.FinancialScreen
 import com.mv.coreapp.presentation.more.MoreScreen
+import com.mv.coreapp.presentation.student.studentdetail.StudentDetailArgs
 import com.mv.coreapp.presentation.student.studentdetail.StudentDetailScreenStateful
 import com.mv.coreapp.presentation.student.students.StudentsScreenStateful
 
@@ -20,62 +22,85 @@ fun CoreAppNavHost(modifier: Modifier = Modifier, navController: NavHostControll
         navController = navController,
         startDestination = Route.StudentsFeature.route
     ) {
-        navigation(
-            startDestination = Route.CalendarFeature.startDestination,
-            route = Route.CalendarFeature.route
-        ) {
-            composable(
-                route = CalendarFeatureRoute.Calendar.route
-            ) {
-                CalendarScreen()
-            }
-        }
+        calendarFeature()
 
-        navigation(
-            startDestination = Route.StudentsFeature.startDestination,
-            route = Route.StudentsFeature.route
-        ) {
-            composable(
-                route = StudentsFeatureRoute.Students.route
-            ) {
-                StudentsScreenStateful(
-                    modifier = modifier,
-                    navController = navController
-                )
-            }
+        studentFeature(
+            modifier = modifier,
+            navController = navController
+        )
 
-            composable(
-                route = StudentsFeatureRoute.StudentDetail.route,
-                arguments = listOf(
-                    navArgument(RouteKeys.STUDENT_DETAIL_PARAM) {
-                        type = NavType.StringType
-                    }
-                )
-            ) { backStackEntry ->
-                StudentDetailScreenStateful(modifier = modifier, backStackEntry = backStackEntry)
-            }
-        }
+        financialFeature()
 
-        navigation(
-            startDestination = Route.FinancialFeature.startDestination,
-            route = Route.FinancialFeature.route
-        ) {
-            composable(
-                route = FinancialFeatureRoute.Financial.route
-            ) {
-                FinancialScreen()
-            }
-        }
+        moreFeature()
+    }
+}
 
-        navigation(
-            startDestination = Route.MoreFeature.startDestination,
-            route = Route.MoreFeature.route
+private fun NavGraphBuilder.calendarFeature() {
+    navigation(
+        startDestination = Route.CalendarFeature.startDestination,
+        route = Route.CalendarFeature.route
+    ) {
+        composable(
+            route = CalendarFeatureRoute.Calendar.route
         ) {
-            composable(
-                route = MoreFeatureRoute.More.route
-            ) {
-                MoreScreen()
-            }
+            CalendarScreen()
         }
     }
 }
+
+private fun NavGraphBuilder.studentFeature(
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+) {
+    navigation(
+        startDestination = Route.StudentsFeature.startDestination,
+        route = Route.StudentsFeature.route
+    ) {
+        composable(
+            route = StudentsFeatureRoute.Students.route
+        ) {
+            StudentsScreenStateful(
+                modifier = modifier,
+                navController = navController
+            )
+        }
+
+        composable(
+            route = StudentsFeatureRoute.StudentDetail.route,
+            arguments = listOf(
+                navArgument(StudentDetailArgs.STUDENT_ID) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            StudentDetailScreenStateful(modifier = modifier)
+        }
+    }
+}
+
+private fun NavGraphBuilder.financialFeature() {
+    navigation(
+        startDestination = Route.FinancialFeature.startDestination,
+        route = Route.FinancialFeature.route
+    ) {
+        composable(
+            route = FinancialFeatureRoute.Financial.route
+        ) {
+            FinancialScreen()
+        }
+    }
+}
+
+private fun NavGraphBuilder.moreFeature() {
+    navigation(
+        startDestination = Route.MoreFeature.startDestination,
+        route = Route.MoreFeature.route
+    ) {
+        composable(
+            route = MoreFeatureRoute.More.route
+        ) {
+            MoreScreen()
+        }
+    }
+}
+
