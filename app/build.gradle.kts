@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-    namespace = "com.mv.coreapp"
-    compileSdk = 34
+    namespace = AppConfig.namespace
+    compileSdk = AppConfig.compileSdkVersion
 
     defaultConfig {
-        applicationId = "com.mv.coreapp"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = AppConfig.applicationId
+        minSdk = AppConfig.minSdkVersion
+        targetSdk = AppConfig.targetSdkVersion
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
