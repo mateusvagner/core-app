@@ -33,7 +33,7 @@ sealed class StudentFeatureRoute(val route: String) {
 
     data object Students : StudentFeatureRoute("Students")
     data object StudentDetail : StudentFeatureRoute("StudentDetail/{${StudentDetailArgs.STUDENT_ID}}") {
-        fun fromStudentsToStudentDetail(studentId: String) = "studentDetail/$studentId"
+        fun fromStudentsToStudentDetail(studentId: String) = "StudentDetail/$studentId"
     }
 }
 
