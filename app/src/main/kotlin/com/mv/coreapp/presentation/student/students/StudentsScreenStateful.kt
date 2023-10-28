@@ -4,9 +4,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.mv.coreapp.navigation.Route
 
 @Composable
 fun StudentsScreenStateful(
+    modifier: Modifier,
+    navController: NavHostController
+) {
+    val viewModel: StudentsViewModel = hiltViewModel()
+
+    StudentsScreenStateful(
+        modifier = modifier,
+        viewModel = viewModel,
+        onNavigateToStudentDetail = { studentId ->
+            navController.navigate(
+                Route.StudentDetail.fromStudentsToStudentDetail(studentId)
+            )
+        }
+    )
+}
+
+@Composable
+private fun StudentsScreenStateful(
     modifier: Modifier,
     viewModel: StudentsViewModel,
     onNavigateToStudentDetail: (String) -> Unit

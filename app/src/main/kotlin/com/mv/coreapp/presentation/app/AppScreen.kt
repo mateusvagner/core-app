@@ -1,11 +1,7 @@
 package com.mv.coreapp.presentation.app
 
-import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -17,9 +13,7 @@ import com.mv.coreapp.presentation.calendar.CalendarScreen
 import com.mv.coreapp.presentation.financial.FinancialScreen
 import com.mv.coreapp.presentation.more.MoreScreen
 import com.mv.coreapp.presentation.student.studentdetail.StudentDetailScreenStateful
-import com.mv.coreapp.presentation.student.studentdetail.StudentDetailViewModel
 import com.mv.coreapp.presentation.student.students.StudentsScreenStateful
-import com.mv.coreapp.presentation.student.students.StudentsViewModel
 
 @Composable
 fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
@@ -36,7 +30,10 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
         composable(
             route = Route.Students.value
         ) {
-            StudentsScreenStateful(modifier, navController)
+            StudentsScreenStateful(
+                modifier = modifier,
+                navController = navController
+            )
         }
 
         composable(
@@ -59,45 +56,7 @@ fun AppScreen(modifier: Modifier = Modifier, navController: NavHostController) {
                 }
             )
         ) { backStackEntry ->
-            StudentDetailScreenStateful(backStackEntry, modifier)
+            StudentDetailScreenStateful(modifier = modifier, backStackEntry = backStackEntry)
         }
-    }
-}
-
-@Composable
-private fun StudentsScreenStateful(
-    modifier: Modifier,
-    navController: NavHostController
-) {
-    val viewModel: StudentsViewModel = hiltViewModel()
-
-    StudentsScreenStateful(
-        modifier = modifier,
-        viewModel = viewModel,
-        onNavigateToStudentDetail = {
-            navController.navigate(
-                Route.StudentDetail.fromStudentsToStudentDetail(it)
-            )
-        }
-    )
-}
-
-@Composable
-private fun StudentDetailScreenStateful(
-    backStackEntry: NavBackStackEntry,
-    modifier: Modifier
-) {
-    val studentId = backStackEntry.arguments?.getString(RouteKeys.STUDENT_DETAIL_PARAM)
-    studentId?.let {
-        val viewModel: StudentDetailViewModel = hiltViewModel()
-
-        StudentDetailScreenStateful(
-            modifier = modifier,
-            studentId = studentId,
-            viewModel = viewModel
-        )
-    } ?: run {
-        Toast.makeText(LocalContext.current, "Student Id is null", Toast.LENGTH_SHORT)
-            .show()
     }
 }

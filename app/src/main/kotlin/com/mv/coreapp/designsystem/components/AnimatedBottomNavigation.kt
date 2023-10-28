@@ -3,8 +3,10 @@ package com.mv.coreapp.designsystem.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -24,5 +26,13 @@ fun AnimatedBottomNavigation(
         }
     ) {
         content()
+    }
+}
+
+@Composable
+@Preview
+private fun AnimatedBottomNavigationPreview() {
+    AnimatedBottomNavigation(isVisible = true) {
+        Text(text = "AnimatedBottomNavigation")
     }
 }
