@@ -46,6 +46,6 @@ internal class StudentDetailScreenArgs(val studentId: String) {
     )
 
     companion object {
-        const val STUDENT_ID = "studentId"
+        const val STUDENT_ID = "studentDetailScreenStudentId"
     }
 }
