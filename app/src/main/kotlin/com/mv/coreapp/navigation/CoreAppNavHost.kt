@@ -57,7 +57,7 @@ private fun NavGraphBuilder.studentFeature(
         route = Route.StudentsFeature.route
     ) {
         composable(
-            route = StudentsFeatureRoute.Students.route
+            route = StudentFeatureRoute.Students.route
         ) {
             StudentsScreenStateful(
                 modifier = modifier,
@@ -66,7 +66,7 @@ private fun NavGraphBuilder.studentFeature(
         }
 
         composable(
-            route = StudentsFeatureRoute.StudentDetail.route,
+            route = StudentFeatureRoute.StudentDetail.route,
             arguments = listOf(
                 navArgument(StudentDetailArgs.STUDENT_ID) {
                     type = NavType.StringType

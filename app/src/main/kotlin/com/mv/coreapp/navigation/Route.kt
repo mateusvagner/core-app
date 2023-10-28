@@ -10,7 +10,7 @@ sealed class Route(val route: String, val startDestination: String) {
 
     data object StudentsFeature : Route(
         route = "StudentsFeature",
-        startDestination = StudentsFeatureRoute.Students.route
+        startDestination = StudentFeatureRoute.Students.route
     )
 
     data object FinancialFeature : Route(
@@ -29,10 +29,10 @@ sealed class CalendarFeatureRoute(val route: String) {
     data object Calendar : CalendarFeatureRoute("Calendar")
 }
 
-sealed class StudentsFeatureRoute(val route: String) {
+sealed class StudentFeatureRoute(val route: String) {
 
-    data object Students : StudentsFeatureRoute("Students")
-    data object StudentDetail : StudentsFeatureRoute("StudentDetail/{${StudentDetailArgs.STUDENT_ID}}") {
+    data object Students : StudentFeatureRoute("Students")
+    data object StudentDetail : StudentFeatureRoute("StudentDetail/{${StudentDetailArgs.STUDENT_ID}}") {
         fun fromStudentsToStudentDetail(studentId: String) = "studentDetail/$studentId"
     }
 }

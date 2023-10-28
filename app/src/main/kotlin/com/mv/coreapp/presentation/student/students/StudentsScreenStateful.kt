@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.mv.coreapp.navigation.StudentsFeatureRoute
+import com.mv.coreapp.navigation.StudentFeatureRoute
 
 @Composable
 fun StudentsScreenStateful(
@@ -20,7 +20,7 @@ fun StudentsScreenStateful(
         viewModel = viewModel,
         onNavigateToStudentDetail = { studentId ->
             navController.navigate(
-                StudentsFeatureRoute.StudentDetail.fromStudentsToStudentDetail(studentId)
+                StudentFeatureRoute.StudentDetail.fromStudentsToStudentDetail(studentId)
             )
         }
     )
