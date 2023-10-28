@@ -40,9 +40,9 @@ fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
                 CoreAppNavigationBarItem(
                     modifier = Modifier.padding(8.dp),
                     item = navigationItem,
-                    selected = navigationItem.route.value == currentRoute,
+                    selected = navigationItem.route.startDestination == currentRoute,
                     onClick = {
-                        onClick(navigationItem.route.value)
+                        onClick(navigationItem.route.route)
                     }
                 )
             }
@@ -55,7 +55,7 @@ fun CoreAppBottomNavigation(currentRoute: String, onClick: (String) -> Unit) {
 fun CoreAppBottomNavigationCalendarPreview() {
     CoreAppTheme {
         CoreAppBottomNavigation(
-            currentRoute = BottomNavigationItem.Calendar.route.value,
+            currentRoute = BottomNavigationItem.Calendar.route.startDestination,
             onClick = {}
         )
     }
@@ -66,7 +66,7 @@ fun CoreAppBottomNavigationCalendarPreview() {
 fun CoreAppBottomNavigationStudentPreview() {
     CoreAppTheme {
         CoreAppBottomNavigation(
-            currentRoute = BottomNavigationItem.Students.route.value,
+            currentRoute = BottomNavigationItem.Students.route.startDestination,
             onClick = {}
         )
     }

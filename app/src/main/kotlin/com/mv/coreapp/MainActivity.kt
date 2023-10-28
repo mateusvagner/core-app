@@ -17,9 +17,9 @@ import androidx.navigation.compose.rememberNavController
 import com.mv.coreapp.designsystem.components.AnimatedBottomNavigation
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 import com.mv.coreapp.navigation.CoreAppBottomNavigation
+import com.mv.coreapp.navigation.CoreAppNavHost
 import com.mv.coreapp.navigation.Route
 import com.mv.coreapp.navigation.mainNavigationItems
-import com.mv.coreapp.presentation.app.AppScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,8 +31,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry?.destination?.route ?: Route.Students.value
-                val mainNavigationItems = mainNavigationItems.map { it.route.value }
+                val currentRoute = navBackStackEntry?.destination?.route ?: Route.StudentsFeature.route
 
                 Scaffold(
                     modifier = Modifier,
@@ -40,11 +39,10 @@ class MainActivity : ComponentActivity() {
                         MainBottomNavigation(
                             currentRoute = currentRoute,
                             navController = navController,
-                            mainNavigationItems = mainNavigationItems
                         )
                     }
                 ) { contentPadding ->
-                    AppScreen(
+                    CoreAppNavHost(
                         modifier = Modifier
                             .fillMaxSize()
                             .background(color = MaterialTheme.colorScheme.background)
@@ -60,22 +58,21 @@ class MainActivity : ComponentActivity() {
     private fun MainBottomNavigation(
         currentRoute: String,
         navController: NavHostController,
-        mainNavigationItems: List<String>
     ) {
-        val isBottomNavigationVisible = mainNavigationItems.contains(currentRoute)
+        val isBottomNavigationVisible = mainNavigationItems.any {
+            it.route.startDestination == currentRoute || it.route.route == currentRoute
+        }
 
         AnimatedBottomNavigation(
             isVisible = isBottomNavigationVisible
         ) {
             CoreAppBottomNavigation(currentRoute = currentRoute) { route ->
                 navController.navigate(route) {
-                    navController.graph.startDestinationRoute?.let { screenRoute ->
+                    navController.currentBackStackEntry?.destination?.route?.let { screenRoute ->
                         popUpTo(screenRoute) {
-                            saveState = true
+                            inclusive = true
                         }
                     }
-                    launchSingleTop = true
-                    restoreState = true
                 }
             }
         }
