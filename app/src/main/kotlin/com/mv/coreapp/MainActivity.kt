@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.mv.coreapp.designsystem.components.AnimatedBottomNavigation
 import com.mv.coreapp.designsystem.theme.CoreAppTheme
 import com.mv.coreapp.navigation.CoreAppNavHost
 import com.mv.coreapp.navigation.Route
+import com.mv.coreapp.presentation.app.bottomnavigationbar.AnimatedBottomNavigation
 import com.mv.coreapp.presentation.app.bottomnavigationbar.CoreAppBottomNavigation
 import com.mv.coreapp.presentation.app.bottomnavigationbar.model.mainNavigationItems
 import dagger.hilt.android.AndroidEntryPoint
