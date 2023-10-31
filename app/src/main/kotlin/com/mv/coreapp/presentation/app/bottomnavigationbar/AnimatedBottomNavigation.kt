@@ -1,4 +1,4 @@
-package com.mv.coreapp.designsystem.components
+package com.mv.coreapp.presentation.app.bottomnavigationbar
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically

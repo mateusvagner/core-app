@@ -7,6 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
@@ -14,6 +15,7 @@ import com.mv.coreapp.presentation.student.StudentFeatureRoute
 
 fun NavGraphBuilder.studentDetailScreen(
     modifier: Modifier = Modifier,
+    navController: NavHostController
 ) {
     composable(
         route = StudentFeatureRoute.StudentDetail.route,
@@ -29,7 +31,13 @@ fun NavGraphBuilder.studentDetailScreen(
         StudentDetailScreenContent(
             modifier = modifier,
             screenState = screenState,
-            onEvent = { }
+            onEvent = { event ->
+                when (event) {
+                    is StudentDetailEvent.BackPressed -> {
+                        navController.popBackStack()
+                    }
+                }
+            }
         )
     }
 }
