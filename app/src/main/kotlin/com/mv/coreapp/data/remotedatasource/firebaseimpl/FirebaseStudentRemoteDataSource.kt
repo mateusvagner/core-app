@@ -25,6 +25,17 @@ class FirebaseStudentRemoteDataSource @Inject constructor(
         studentDatabase.child(student.id ?: UUID.randomUUID().toString()).setValue(student)
     }
 
+    override suspend fun getStudentById(studentId: String): StudentDto =
+        suspendCancellableCoroutine { continuation ->
+            studentDatabase.child(studentId).get().addOnSuccessListener { snapShot ->
+                val student = snapShot.getValue(StudentDto::class.java) ?: return@addOnSuccessListener
+                continuation.resume(student)
+
+            }.addOnFailureListener { exception ->
+                continuation.resumeWithException(exception)
+            }
+        }
+
     override suspend fun getStudentByIdAsFlow(studentId: String): Flow<StudentDto> = callbackFlow {
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -54,6 +65,7 @@ class FirebaseStudentRemoteDataSource @Inject constructor(
                 val students =
                     snapShot.children.mapNotNull { it.getValue(StudentDto::class.java) }
                 continuation.resume(students)
+
             }.addOnFailureListener { exception ->
                 continuation.resumeWithException(exception)
             }

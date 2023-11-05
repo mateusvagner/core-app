@@ -7,6 +7,7 @@ data class StudentDto(
     var birthDate: String? = "",
     var enrollmentDate: String? = "",
     var paymentDueDate: String? = "",
+    var paymentDueDay: Int? = 1,
     var modality: String? = "",
     var plan: String? = "",
     var status: String? = "",

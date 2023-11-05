@@ -31,7 +31,7 @@ class StudentsViewModel @Inject constructor(
 
     private fun loadStudents() {
         viewModelScope.launch(errorHandler) {
-            studentRepository.getAllStudents().collect { result ->
+            studentRepository.getAllStudentsAsFlow().collect { result ->
                 when (result) {
                     is CoreResult.Success -> handleSuccess(result)
                     is CoreResult.Error ->

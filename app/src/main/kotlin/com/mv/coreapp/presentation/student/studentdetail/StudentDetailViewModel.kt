@@ -35,7 +35,7 @@ class StudentDetailViewModel @Inject constructor(
 
     private fun loadStudent(studentId: String) {
         viewModelScope.launch(errorHandler) {
-            studentRepository.getStudentById(studentId).collect { result ->
+            studentRepository.getStudentByIdAsFlow(studentId).collect { result ->
                 when (result) {
                     is CoreResult.Success ->
                         _state.value =
