@@ -33,6 +33,14 @@ class FakeStudentRemoteDataSource : StudentRemoteDataSource {
         }
     }
 
+    override suspend fun getStudentById(studentId: String): StudentDto {
+        if (error != null) {
+            throw error!!
+        } else {
+            return studentDto!!
+        }
+    }
+
     override suspend fun getStudentByIdAsFlow(studentId: String): Flow<StudentDto> = flow {
         if (error != null) {
             throw error!!

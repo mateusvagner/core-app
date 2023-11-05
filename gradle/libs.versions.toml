@@ -34,16 +34,17 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime-compose" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose-version" }
+
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-material3 = { group = "androidx.compose.material3", name = "material3" }
-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
+material3 = { group = "androidx.compose.material3", name = "material3" }
+material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-vertion" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-vertion" }
@@ -55,8 +56,11 @@ firebase-realtime-database = { group = "com.google.firebase", name = "firebase-d
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
+
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
+
 com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
+
 com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt-vertion" }
 
 org-jlleitschuh-gradle-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "gradle-ktlint-version" }

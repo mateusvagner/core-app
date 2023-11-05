@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CoreAppTheme {
+                // TODO Add NavHost With Login Graph and Main Graph (Scaffold)
                 val navController = rememberNavController()
 
                 val navBackStackEntry by navController.currentBackStackEntryAsState()

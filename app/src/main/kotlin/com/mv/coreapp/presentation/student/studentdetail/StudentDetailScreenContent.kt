@@ -73,6 +73,7 @@ private fun StudentDetailScreenContentPreview() {
                     birthDate = Date(),
                     enrollmentDate = Date(),
                     paymentDueDate = Date(),
+                    paymentDueDay = 10,
                     modality = "Pilates",
                     plan = Plan.MONTHLY,
                     status = StudentStatus.ON_HOLD,
