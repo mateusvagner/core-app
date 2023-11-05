@@ -1,10 +1,11 @@
-package com.mv.coreapp.data.fake
+package com.mv.coreapp.data.repository
 
+import com.mv.coreapp.data.fake.FakeStudentDto
+import com.mv.coreapp.data.fake.FakeStudentRemoteDataSource
 import com.mv.coreapp.data.mapper.StudentMapper
 import com.mv.coreapp.data.repository.impl.StudentRepositoryImpl
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
@@ -30,7 +31,7 @@ class StudentRepositoryTest {
         )
 
         // Assert
-        assertTrue(result)
+        Assert.assertTrue(result)
     }
 
     @Test
@@ -47,6 +48,6 @@ class StudentRepositoryTest {
         )
 
         // Assert
-        assertFalse(result)
+        Assert.assertFalse(result)
     }
 }
