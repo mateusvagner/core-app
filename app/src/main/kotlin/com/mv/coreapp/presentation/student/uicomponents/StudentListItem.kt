@@ -79,6 +79,7 @@ fun StudentListItem(
 
                 Text(text = "Nascimento: ${student.birthDate}", fontSize = 14.sp)
                 Text(text = "Plano: ${student.plan}", fontSize = 14.sp)
+                Text(text = "Modalidade: ${student.modality}", fontSize = 14.sp)
             }
 
             Column(
