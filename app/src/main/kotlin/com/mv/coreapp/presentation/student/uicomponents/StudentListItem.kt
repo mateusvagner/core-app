@@ -1,4 +1,4 @@
-package com.mv.coreapp.presentation.student.components
+package com.mv.coreapp.presentation.student.uicomponents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -79,6 +79,7 @@ fun StudentListItem(
 
                 Text(text = "Nascimento: ${student.birthDate}", fontSize = 14.sp)
                 Text(text = "Plano: ${student.plan}", fontSize = 14.sp)
+                Text(text = "Modalidade: ${student.modality}", fontSize = 14.sp)
             }
 
             Column(
@@ -139,6 +140,7 @@ fun StudentListItemPreview() {
                 birthDate = Date(),
                 enrollmentDate = Date(),
                 paymentDueDate = Date(),
+                paymentDueDay = 10,
                 modality = "Pilates",
                 plan = Plan.MONTHLY,
                 status = StudentStatus.ON_HOLD,

@@ -4,7 +4,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.mv.coreapp.data.remotedatasource.RemoteStudentDataSource
+import com.mv.coreapp.data.remotedatasource.StudentRemoteDataSource
 import com.mv.coreapp.data.remotedatasource.dto.StudentDto
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -15,15 +15,26 @@ import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-class FirebaseRemoteStudentDataSource @Inject constructor(
+class FirebaseStudentRemoteDataSource @Inject constructor(
     firebaseDatabase: DatabaseReference
-) : RemoteStudentDataSource {
+) : StudentRemoteDataSource {
 
     private val studentDatabase = firebaseDatabase.child("student")
 
     override suspend fun saveStudent(student: StudentDto) {
         studentDatabase.child(student.id ?: UUID.randomUUID().toString()).setValue(student)
     }
+
+    override suspend fun getStudentById(studentId: String): StudentDto =
+        suspendCancellableCoroutine { continuation ->
+            studentDatabase.child(studentId).get().addOnSuccessListener { snapShot ->
+                val student = snapShot.getValue(StudentDto::class.java) ?: return@addOnSuccessListener
+                continuation.resume(student)
+
+            }.addOnFailureListener { exception ->
+                continuation.resumeWithException(exception)
+            }
+        }
 
     override suspend fun getStudentByIdAsFlow(studentId: String): Flow<StudentDto> = callbackFlow {
         val listener = object : ValueEventListener {
@@ -54,6 +65,7 @@ class FirebaseRemoteStudentDataSource @Inject constructor(
                 val students =
                     snapShot.children.mapNotNull { it.getValue(StudentDto::class.java) }
                 continuation.resume(students)
+
             }.addOnFailureListener { exception ->
                 continuation.resumeWithException(exception)
             }

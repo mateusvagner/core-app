@@ -13,9 +13,10 @@ object StudentMapper {
             id = dto.id!!,
             name = dto.name!!,
             surname = dto.surname!!,
-            birthDate = DateParser.parseDate(dto.birthDate!!)!!, // TODO Fallback for parse error
-            enrollmentDate = DateParser.parseDate(dto.enrollmentDate!!)!!, // TODO Fallback for parse error
-            paymentDueDate = DateParser.parseDate(dto.paymentDueDate!!)!!, // TODO Fallback for parse error
+            birthDate = DateParser.parseDateIsoFormat(dto.birthDate!!)!!, // TODO Fallback for parse error
+            enrollmentDate = DateParser.parseDateIsoFormat(dto.enrollmentDate!!)!!, // TODO Fallback for parse error
+            paymentDueDate = DateParser.parseDateIsoFormat(dto.paymentDueDate!!)!!, // TODO Fallback for parse error
+            paymentDueDay = dto.paymentDueDay!!,
             modality = dto.modality!!,
             plan = Plan.valueOf(dto.plan!!),
             status = StudentStatus.valueOf(dto.status!!),
@@ -28,9 +29,9 @@ object StudentMapper {
             id = student.id,
             name = student.name,
             surname = student.surname,
-            birthDate = DateParser.formatDate(student.birthDate),
-            enrollmentDate = DateParser.formatDate(student.enrollmentDate),
-            paymentDueDate = DateParser.formatDate(student.paymentDueDate),
+            birthDate = DateParser.formatDateIsoFormat(student.birthDate),
+            enrollmentDate = DateParser.formatDateIsoFormat(student.enrollmentDate),
+            paymentDueDate = DateParser.formatDateIsoFormat(student.paymentDueDate),
             modality = student.modality,
             plan = student.plan.name,
             status = student.status.name,

@@ -3,9 +3,11 @@ package com.mv.coreapp.data.remotedatasource
 import com.mv.coreapp.data.remotedatasource.dto.StudentDto
 import kotlinx.coroutines.flow.Flow
 
-interface RemoteStudentDataSource {
+interface StudentRemoteDataSource {
 
     suspend fun saveStudent(student: StudentDto)
+
+    suspend fun getStudentById(studentId: String): StudentDto
 
     suspend fun getStudentByIdAsFlow(studentId: String): Flow<StudentDto>
 

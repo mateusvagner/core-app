@@ -6,4 +6,8 @@
     <string name="students">Students</string>
     <string name="financial">Financial</string>
     <string name="more">More</string>
+
+    <!--Actions-->
+    <string name="back">Back</string>
+
 </resources>

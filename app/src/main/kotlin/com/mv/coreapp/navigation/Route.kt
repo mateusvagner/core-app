@@ -1,5 +1,8 @@
 package com.mv.coreapp.navigation
 
+import com.mv.coreapp.presentation.calendar.CalendarFeatureRoute
+import com.mv.coreapp.presentation.financial.FinancialFeatureRoute
+import com.mv.coreapp.presentation.more.MoreFeatureRoute
 import com.mv.coreapp.presentation.student.StudentFeatureRoute
 
 sealed class Route(val route: String, val startDestination: String) {
@@ -22,19 +25,4 @@ sealed class Route(val route: String, val startDestination: String) {
         route = "MoreFeature",
         startDestination = MoreFeatureRoute.More.route
     )
-}
-
-sealed class CalendarFeatureRoute(val route: String) {
-
-    data object Calendar : CalendarFeatureRoute("Calendar")
-}
-
-sealed class FinancialFeatureRoute(val route: String) {
-
-    data object Financial : FinancialFeatureRoute("Financial")
-}
-
-sealed class MoreFeatureRoute(val route: String) {
-
-    data object More : MoreFeatureRoute("More")
 }

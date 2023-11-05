@@ -9,6 +9,7 @@ data class Student(
     var birthDate: Date,
     var enrollmentDate: Date,
     var paymentDueDate: Date,
+    var paymentDueDay: Int,
     var modality: String,
     var plan: Plan,
     var status: StudentStatus,
