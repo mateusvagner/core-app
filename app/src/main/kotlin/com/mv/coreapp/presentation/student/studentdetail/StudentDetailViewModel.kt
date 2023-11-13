@@ -14,13 +14,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class StudentDetailViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
+class StudentDetailViewModel(
+    private val studentId: String,
     private val studentRepository: StudentRepository
 ) : ViewModel() {
 
-    private val args = StudentDetailScreenArgs(savedStateHandle)
-    private val studentId = args.studentId
+    @Inject constructor(
+        savedStateHandle: SavedStateHandle,
+        studentRepository: StudentRepository
+    ) :this(
+        studentId = StudentDetailScreenArgs(savedStateHandle).studentId,
+        studentRepository = studentRepository
+    )
 
     private val _state = MutableStateFlow<StudentDetailState>(StudentDetailState.Loading)
     val state: StateFlow<StudentDetailState> = _state.asStateFlow()
