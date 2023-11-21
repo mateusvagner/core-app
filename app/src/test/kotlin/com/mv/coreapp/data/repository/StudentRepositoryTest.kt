@@ -1,5 +1,6 @@
 package com.mv.coreapp.data.repository
 
+import com.mv.coreapp.data.CoreResult
 import com.mv.coreapp.data.fake.FakeStudentDto
 import com.mv.coreapp.data.fake.FakeStudentRemoteDataSource
 import com.mv.coreapp.data.mapper.StudentMapper
@@ -49,5 +50,43 @@ class StudentRepositoryTest {
 
         // Assert
         Assert.assertFalse(result)
+    }
+
+    @Test
+    fun `getStudentByIdAsFlow should return a Student if no error happen`() = runTest {
+        // Arrange
+        val studentDto = FakeStudentDto.makeStudentDto()
+        val studentId = studentDto.id!!
+        val expectedStudent = StudentMapper.mapStudentDtoToStudent(studentDto)
+
+        studentRemoteDataSource.setStudentDto(studentDto)
+
+        // Act
+        val result = studentRepository.getStudentByIdAsFlow(studentId)
+
+        // Assert
+        result.collect { coreResult ->
+            Assert.assertTrue(coreResult is CoreResult.Success)
+            Assert.assertEquals(expectedStudent, (coreResult as CoreResult.Success).data)
+        }
+    }
+
+    @Test
+    fun `getStudentByIdAsFlow should return a Error Result if some error happen`() = runTest {
+        // Arrange
+        val studentDto = FakeStudentDto.makeStudentDto()
+        val studentId = studentDto.id!!
+
+        val exception = Exception("Some error")
+        studentRemoteDataSource.setError(exception)
+
+        // Act
+        val result = studentRepository.getStudentByIdAsFlow(studentId)
+
+        // Assert
+        result.collect { coreResult ->
+            Assert.assertTrue(coreResult is CoreResult.Error)
+            Assert.assertEquals(exception, (coreResult as CoreResult.Error).exception)
+        }
     }
 }
