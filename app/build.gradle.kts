@@ -54,6 +54,10 @@ android {
     }
 }
 
+ktlint {
+    android.set(true)
+}
+
 dependencies {
 
     implementation(libs.core.ktx)
